@@ -52,3 +52,4 @@ gradle/wrapper/gradle-wrapper.jar
 .idea/gradle.xml
 src/main/resources/templates/test.html
 src/main/java/org/example/Main.java
+settings.gradle
