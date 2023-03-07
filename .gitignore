@@ -42,3 +42,13 @@ bin/
 .DS_Store
 /.idea/
 /gradle/
+gradlew.bat
+gradlew
+*.properties
+gradle/wrapper/gradle-wrapper.jar
+.idea/workspace.xml
+.idea/vcs.xml
+.idea/misc.xml
+.idea/gradle.xml
+src/main/resources/templates/test.html
+src/main/java/org/example/Main.java
