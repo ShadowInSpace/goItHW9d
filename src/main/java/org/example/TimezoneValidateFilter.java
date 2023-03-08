@@ -2,6 +2,7 @@ package org.example;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -9,6 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.TimeZone;
 
+@WebFilter("/time")
 public class TimezoneValidateFilter extends HttpFilter {
     protected void doFilter(HttpServletRequest req,
                             HttpServletResponse resp,
