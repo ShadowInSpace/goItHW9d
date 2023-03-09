@@ -37,42 +37,27 @@ public class TimeServlet extends HttpServlet {
         resp.setContentType("text/html; charset=utf-8");
         Date date = new Date();
         SimpleDateFormat FORMATTER = new SimpleDateFormat("yyyy-MM-dd  HH:mm:ss zz");
-        Cookie timeZone = new Cookie("timeZone", "UTC");
+        Cookie timeZone = new Cookie("lastTimezone", "UTC");
 
         Cookie[] cookies = req.getCookies();
-        if (cookies != null) {
+        String timeZoneID = req.getParameter("timezone");
+        if (timeZoneID != null) {
+            timeZone.setValue(timeZoneID);
+        } else if (cookies != null) {
             for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("timeZone")) {
+                if (cookie.getName().equals("lastTimezone")) {
                     timeZone.setValue(cookie.getValue());
                 }
             }
         }
-        FORMATTER.setTimeZone(TimeZone.getTimeZone(timeZone.getValue()));
 
+        FORMATTER.setTimeZone(TimeZone.getTimeZone(timeZone.getValue()));
         Context simpleContext = new Context(
                 req.getLocale(),
                 Map.of("date", FORMATTER.format(date))
         );
-
         resp.addCookie(timeZone);
         engine.process("timezone", simpleContext, resp.getWriter());
         resp.getWriter().close();
-
-
-        ////////////
-//        String timeZoneID = req.getParameter("timezone");
-//        TimeZone timeZone;
-//        if (timeZoneID == null) {
-//            timeZone = TimeZone.getTimeZone("UTC");
-//        } else {
-//            timeZone = TimeZone.getTimeZone(timeZoneID);
-//        }
-//
-//        Context someContext = new Context()
-//
-//        resp.getWriter().write((FORMATTER.format(date)));
-//
-//        resp.getWriter().close();
-
     }
 }
